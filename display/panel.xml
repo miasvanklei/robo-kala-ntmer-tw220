@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Group id='Main Panel'>
+<PanelName>RM69380_600NITS</PanelName>
+<PanelDescription>RM69380 N1 Dual DSI 600Nits Video Mode Panel (1600x2560 24bpp)</PanelDescription>
+<Group id='EDID Configuration'>
+    <ManufactureID>0x104D</ManufactureID>
+    <ProductCode>8280</ProductCode>
+    <SerialNumber>0x000001</SerialNumber>
+    <WeekofManufacture>0x01</WeekofManufacture>
+    <YearofManufacture>0x1B</YearofManufacture>
+    <EDIDVersion>1</EDIDVersion>
+    <EDIDRevision>3</EDIDRevision>
+    <VideoInputDefinition>0x80</VideoInputDefinition>
+    <HorizontalScreenSize>0x07</HorizontalScreenSize>
+    <VerticalScreenSize>0x0E</VerticalScreenSize>
+    <DisplayTransferCharacteristics>0x78</DisplayTransferCharacteristics>
+    <FeatureSupport>0x2</FeatureSupport>
+    <Red.GreenBits>0xA5</Red.GreenBits>
+    <Blue.WhiteBits>0x58</Blue.WhiteBits>
+    <RedX>0xA6</RedX>
+    <RedY>0x54</RedY>
+    <GreenX>0x33</GreenX>
+    <GreenY>0xB3</GreenY>
+    <BlueX>0x26</BlueX>
+    <BlueY>0x12</BlueY>
+    <WhiteX>0x4F</WhiteX>
+    <WhiteY>0x54</WhiteY>
+    <EstablishedTimingsI>0x0</EstablishedTimingsI>
+    <EstablishedTimingsII>0x0</EstablishedTimingsII>
+    <ManufacturesTiming>0x0</ManufacturesTiming>
+    <StandardTimings1/>
+    <StandardTimings2/>
+    <StandardTimings3/>
+    <StandardTimings4/>
+    <StandardTimings5/>
+    <StandardTimings6/>
+    <StandardTimings7/>
+    <SignalTimingInterface/>
+</Group>
+<Group id='Detailed Timing'>
+    <HorizontalScreenSizeMM>0x44</HorizontalScreenSizeMM>
+    <VerticalScreenSizeMM>0x78</VerticalScreenSizeMM>
+    <HorizontalVerticalScreenSizeMM>0x00</HorizontalVerticalScreenSizeMM>
+</Group>
+<Group id='Active Timing'>
+    <HorizontalActive>2560</HorizontalActive> <!-- 2560  -->
+    <HorizontalFrontPorch>32</HorizontalFrontPorch> <!-- 32 -->
+    <HorizontalBackPorch>38</HorizontalBackPorch> <!-- 38 -->
+    <HorizontalSyncPulse>12</HorizontalSyncPulse> <!-- 12 -->
+    <HorizontalSyncSkew>0</HorizontalSyncSkew>
+    <HorizontalLeftBorder>0</HorizontalLeftBorder>
+    <HorizontalRightBorder>0</HorizontalRightBorder>
+    <VerticalActive>1600</VerticalActive> <!-- 1600 -->
+    <VerticalFrontPorch>20</VerticalFrontPorch> <!-- 20 -->
+    <VerticalBackPorch>8</VerticalBackPorch> <!-- 8 -->
+    <VerticalSyncPulse>4</VerticalSyncPulse> <!-- 4 -->
+    <VerticalSyncSkew>0</VerticalSyncSkew>
+    <VerticalTopBorder>0</VerticalTopBorder>
+    <VerticalBottomBorder>0</VerticalBottomBorder>
+    <InvertDataPolarity>False</InvertDataPolarity>
+    <InvertVsyncPolairty>False</InvertVsyncPolairty>
+    <InvertHsyncPolarity>False</InvertHsyncPolarity>
+    <BorderColor>0x0</BorderColor>
+</Group>
+<Group id='Display Interface'>
+    <InterfaceType>8</InterfaceType> <!-- DSI_VIDEO --> 
+    <InterfaceColorFormat>3</InterfaceColorFormat> <!-- RGB_888 -->
+</Group>
+<Group id='DSI Interface'>
+    <DSIChannelId>1</DSIChannelId> <!-- DSI_VIDEO --> 
+    <DSIVirtualId>0</DSIVirtualId>
+    <DSIColorFormat>36</DSIColorFormat> <!-- RGB_888 -->
+    <DSITrafficMode>1</DSITrafficMode> <!-- Non Burst Event --> 
+    <DSILanes>4</DSILanes> <!-- 4 lanes -->
+    <DSIHsaHseAfterVsVe>False</DSIHsaHseAfterVsVe>
+    <DSILowPowerModeInHFP>False</DSILowPowerModeInHFP>
+    <DSILowPowerModeInHBP>False</DSILowPowerModeInHBP>
+    <DSILowPowerModeInHSA>False</DSILowPowerModeInHSA>
+    <DSILowPowerModeInBLLPEOF>True</DSILowPowerModeInBLLPEOF> <!-- Enter LP mode during the last line of the BLLP -->
+    <DSILowPowerModeInBLLP>True</DSILowPowerModeInBLLP> <!-- Enter LP mode during BLLP -->
+    <DSIRefreshRate>0x3C0000</DSIRefreshRate> <!-- 60hz -->
+    <DSIPhyDCDCMode>False</DSIPhyDCDCMode> <!-- LDO mode --> 
+    <DSIPacketTransferHS>False</DSIPacketTransferHS> <!-- LP mode -->
+    <DSILP11AtInit>False</DSILP11AtInit> <!-- Enter LP11 before reset -->
+    <DSIControllerMapping> <!-- dual dsi -->
+        00 01
+    </DSIControllerMapping> 
+</Group>
+<DSIInitSequence>
+    FF 32 <!-- wait for 50 ms -->
+    FD 03 <!-- 1 command is send to controller 0, 2 command is send to controller 1, 3 to both? -->
+    15 FE D1
+    15 D3 00
+    15 D0 00
+    15 D2 00
+    15 D4 00
+    15 B4 01
+    15 FE A1
+    15 B1 04
+    15 CD 6B
+    15 CE BB
+    15 FE 40
+    15 B3 08
+    15 FE 26
+    15 32 07
+    15 FE FD
+    15 80 04
+    15 83 00
+    15 FE D0
+    15 7E 80
+    15 FE D2
+    15 23 56
+    15 FE A1
+    15 B3 3F
+    15 E3 03
+    15 C3 83
+    15 C4 FF
+    15 C5 5F
+    15 FE FD
+    15 EE 00
+    15 EF 00
+    15 FE A0
+    15 40 3C <!-- 60 hz -->
+    15 FE 00
+    15 53 28 <!-- write ctrl display -->
+    15 C2 08
+    15 35 00 <!-- turn on tearing -->
+    39 51 00 00 <!-- set display brightness -->
+    05 11 00 <!-- exit sleep mode -->
+    FF 70 <!-- wait for 112 ms -->
+    05 29 00 <!-- display on -->
+    FF 30 <!-- wait for 48 ms -->
+</DSIInitSequence>
+<DSITermSequence>
+    FD 03
+    15 FE 00
+    05 28
+    FF 28
+    05 10
+    FF 28
+</DSITermSequence>
+<Group id='Connection Configuration'>
+    <Display1Reset1Info>DSI_PANEL_RESET,0, 8000, 1</Display1Reset1Info> <!-- gpio name, active low, 8ms, active on power down -->
+    <Display1Power1Info>DSI_PANEL_MODE_SELECT, 0, 0, 0, 0, TRUE</Display1Power1Info> <!-- gpio name, active low, 0ms, ?? -->
+</Group>
+<Group id='Backlight Configuration'>
+    <BacklightType>3</BacklightType> <!-- backlight through dsi -->
+    <BacklightSteps>100</BacklightSteps> <!-- 1% -->
+    <BacklightDefault>80</BacklightDefault>
+    <BacklightLowPower>40</BacklightLowPower>
+    <BrightnessMinLuminance>0</BrightnessMinLuminance>
+    <BrightnessMaxLuminance>600000</BrightnessMaxLuminance>
+    <AdaptiveBrightnessFeature>1</AdaptiveBrightnessFeature>
+    <CABLEnable>False</CABLEnable>
+</Group>

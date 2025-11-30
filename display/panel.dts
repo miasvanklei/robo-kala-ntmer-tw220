@@ -1,0 +1,88 @@
+/dts-v1/;
+
+/ {
+    mdp {
+        compatible = "qcom,mdss_mdp";
+
+        dsi_sim_vid: qcom,mdss_dsi_raydium_rm69380_n1_video {
+            qcom,mdss-dsi-panel-name = "RM69380 N1 Dual DSI 600Nits Video Mode Panel (1600x2560 24bpp)";
+            qcom,mdss-dsi-panel-type = "dsi_video_mode";
+            qcom,mdss-dsi-virtual-channel-id = <0x00>;
+            qcom,mdss-dsi-bpp = <0x18>;
+            qcom,mdss-dsi-border-color = <0x00>;
+            qcom,mdss-dsi-traffic-mode = "non_burst_sync_event";
+            qcom,mdss-dsi-bllp-eof-power-mode;
+            qcom,mdss-dsi-bllp-power-mode;
+            qcom,mdss-dsi-lane-0-state;
+            qcom,mdss-dsi-lane-1-state;
+            qcom,mdss-dsi-lane-2-state;
+            qcom,mdss-dsi-lane-3-state;
+            qcom,mdss-dsi-reset-sequence = <0x01 0x08 0x00 0x08 0x01 0x0>;
+            qcom,mdss-dsi-bl-max-level = <6000>;
+
+            qcom,mdss-dsi-display-timings {
+                timing@0 {
+                    qcom,mdss-dsi-panel-width = <0x500>;
+                    qcom,mdss-dsi-panel-height = <0x640>;
+                    qcom,mdss-dsi-h-front-porch = <0x20>;
+                    qcom,mdss-dsi-h-back-porch = <0x26>;
+                    qcom,mdss-dsi-h-pulse-width = <0x0c>;
+                    qcom,mdss-dsi-h-sync-skew = <0x00>;
+                    qcom,mdss-dsi-v-back-porch = <0x08>;
+                    qcom,mdss-dsi-v-front-porch = <0x14>;
+                    qcom,mdss-dsi-v-pulse-width = <0x04>;
+                    qcom,mdss-dsi-panel-framerate = <0x3c>;
+        
+                    qcom,mdss-dsi-on-command = [
+                        15 01 00 00 00 00 02 FE D1
+                        15 01 00 00 00 00 02 D3 00
+                        15 01 00 00 00 00 02 D0 00
+                        15 01 00 00 00 00 02 D2 00
+                        15 01 00 00 00 00 02 D4 00
+                        15 01 00 00 00 00 02 B4 01
+                        15 01 00 00 00 00 02 FE A1
+                        15 01 00 00 00 00 02 B1 04
+                        15 01 00 00 00 00 02 CD 6B
+                        15 01 00 00 00 00 02 CE BB
+                        15 01 00 00 00 00 02 FE 40
+                        15 01 00 00 00 00 02 B3 08
+                        15 01 00 00 00 00 02 FE 26
+                        15 01 00 00 00 00 02 32 07
+                        15 01 00 00 00 00 02 FE FD
+                        15 01 00 00 00 00 02 80 04
+                        15 01 00 00 00 00 02 83 00
+                        15 01 00 00 00 00 02 FE D0
+                        15 01 00 00 00 00 02 7E 80
+                        15 01 00 00 00 00 02 FE D2
+                        15 01 00 00 00 00 02 23 56
+                        15 01 00 00 00 00 02 FE A1
+                        15 01 00 00 00 00 02 B3 3F
+                        15 01 00 00 00 00 02 E3 03
+                        15 01 00 00 00 00 02 C3 83
+                        15 01 00 00 00 00 02 C4 FF
+                        15 01 00 00 00 00 02 C5 5F
+                        15 01 00 00 00 00 02 FE FD
+                        15 01 00 00 00 00 02 EE 00
+                        15 01 00 00 00 00 02 EF 00
+                        15 01 00 00 00 00 02 FE A0
+                        15 01 00 00 00 00 02 40 3C
+                        15 01 00 00 00 00 02 FE 00
+                        15 01 00 00 00 00 02 53 28
+                        15 01 00 00 00 00 02 C2 08
+                        15 01 00 00 00 00 02 35 00
+                        39 01 00 00 00 00 02 51 FF
+                        05 01 00 00 70 00 02 11 00
+                        05 01 00 00 30 00 02 29 00
+                    ];
+                    qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+                    qcom,mdss-dsi-off-command = [
+                        15 01 00 00 00 00 02 FE 00
+                        05 01 00 00 28 00 02 28 00
+                        05 01 00 00 28 00 02 10 00
+                    ];
+                    qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+                };
+            };
+        };
+    };
+};
