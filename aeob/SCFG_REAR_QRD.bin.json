@@ -1,0 +1,8 @@
+Package ()
+{
+    "com.qti.sensormodule.union_ov13b10.bin",
+    "com.qti.tuned.union_ov13b10.bin",
+    0x000000000015006C,
+    0x000000000D42300B,
+    0x0000000000000000,
+},

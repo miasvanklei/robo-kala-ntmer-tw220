@@ -1,0 +1,8 @@
+Package ()
+{
+    "com.qti.sensormodule.union_gc5035.bin",
+    "com.qti.tuned.union_gc5035.bin",
+    0x000000000011006E,
+    0x00000000503500F0,
+    0x0000000000000000,
+},

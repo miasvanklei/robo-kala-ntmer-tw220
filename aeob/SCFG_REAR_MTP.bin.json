@@ -1,0 +1,8 @@
+Package ()
+{
+    "com.qti.sensormodule.sunny_imx586.bin",
+    "com.qti.tuned.sunny_imx586.bin",
+    0x0000000000160034,
+    0x0000000005860016,
+    0x0000000000000000,
+},
