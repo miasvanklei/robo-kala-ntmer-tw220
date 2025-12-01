@@ -1,0 +1,166 @@
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-ntmer-tw220.dts	2025-12-01 13:04:49.353004568 +0100
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-ntmer-tw220.dts	2025-12-01 13:04:24.286195156 +0100
+@@ -137,6 +137,7 @@
+ 					reg = <2>;
+ 
+ 					pmic_glink_con0_sbu: endpoint {
++						remote-endpoint = <&usb0_sbu_mux>;
+ 					};
+ 				};
+ 			};
+@@ -171,6 +172,7 @@
+ 					reg = <2>;
+ 
+ 					pmic_glink_con1_sbu: endpoint {
++						remote-endpoint = <&usb1_sbu_mux>;
+ 					};
+ 				};
+ 			};
+@@ -358,6 +360,44 @@
+ 		};
+ 	};
+ 
++	usb0-sbu-mux {
++		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
++
++		enable-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
++		select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&usb0_sbu_default>;
++
++		mode-switch;
++		orientation-switch;
++
++		port {
++			usb0_sbu_mux: endpoint {
++				remote-endpoint = <&pmic_glink_con0_sbu>;
++			};
++		};
++	};
++
++	usb1-sbu-mux {
++		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
++
++		enable-gpios = <&tlmm 48 GPIO_ACTIVE_LOW>;
++		select-gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&usb1_sbu_default>;
++
++		mode-switch;
++		orientation-switch;
++
++		port {
++			usb1_sbu_mux: endpoint {
++				remote-endpoint = <&pmic_glink_con1_sbu>;
++			};
++		};
++	};
++
+ 	wcn6855-pmu {
+ 		compatible = "qcom,wcn6855-pmu";
+ 
+@@ -622,6 +662,10 @@
+ 	};
+ };
+ 
++&dispcc0 {
++	status = "okay";
++};
++
+ &gpi_dma0 {
+ 	status = "okay";
+ };
+@@ -643,6 +687,28 @@
+ 	};
+ };
+ 
++&mdss0 {
++	status = "okay";
++};
++
++&mdss0_dp0 {
++	status = "okay";
++};
++
++&mdss0_dp0_out {
++	data-lanes = <0 1>;
++	remote-endpoint = <&usb_0_qmpphy_dp_in>;
++};
++
++&mdss0_dp1 {
++	status = "okay";
++};
++
++&mdss0_dp1_out {
++	data-lanes = <0 1>;
++	remote-endpoint = <&usb_1_qmpphy_dp_in>;
++};
++
+ &i2c11 {
+ 	clock-frequency = <400000>;
+ 
+@@ -1094,6 +1160,10 @@
+ 	status = "okay";
+ };
+ 
++&usb_0_qmpphy_dp_in {
++	remote-endpoint = <&mdss0_dp0_out>;
++};
++
+ &usb_0_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con0_ss>;
+ };
+@@ -1127,6 +1197,10 @@
+ 	status = "okay";
+ };
+ 
++&usb_1_qmpphy_dp_in {
++	remote-endpoint = <&mdss0_dp1_out>;
++};
++
+ &usb_1_qmpphy_out {
+ 	remote-endpoint = <&pmic_glink_con1_ss>;
+ };
+@@ -1449,6 +1523,40 @@
+ 		};
+ 	};
+ 
++	usb0_sbu_default: usb0-sbu-state {
++		oe-n-pins {
++			pins = "gpio101";
++			function = "gpio";
++			bias-disable;
++			drive-strength = <16>;
++			output-high;
++		};
++
++		sel-pins {
++			pins = "gpio164";
++			function = "gpio";
++			bias-disable;
++			drive-strength = <16>;
++		};
++	};
++
++	usb1_sbu_default: usb1-sbu-state {
++		oe-n-pins {
++			pins = "gpio48";
++			function = "gpio";
++			bias-disable;
++			drive-strength = <16>;
++			output-high;
++		};
++
++		sel-pins {
++			pins = "gpio47";
++			function = "gpio";
++			bias-disable;
++			drive-strength = <16>;
++		};
++	};
++
+ 	wlan_en: wlan-en-state {
+ 		pins = "gpio134";
+ 		function = "gpio";
