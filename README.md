@@ -37,61 +37,36 @@ TODO
 TODO
 ## Altmode
 
-Altmode does not work. The following is seen in kernel log:
-```
-[ 1084.525702] msm_dpu ae01000.display-controller: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:34:DP-1] generating connector hotplug event
-[ 1084.525792] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] 
-[ 1084.525807] [drm:drm_mode_object_get] OBJ ID: 34 (2)
-[ 1084.525822] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1]
-[ 1084.526457] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1] disconnected
-[ 1084.526475] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] No connectors reported connected with modes
-[ 1084.526487] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] [CONNECTOR:34:DP-1] enabled? no
-[ 1084.526505] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] Not using firmware configuration
-[ 1084.526518] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] picking CRTCs for 16383x16383 config
-[ 1084.526532] [drm:drm_mode_object_put] OBJ ID: 34 (2)
-[ 1084.526542] msm_dpu ae01000.display-controller: [drm:__drm_fb_helper_initial_config_and_unlock] test CRTC 0 primary plane
-[ 1084.526559] msm_dpu ae01000.display-controller: [drm] Cannot find any crtc or sizes
-[ 1084.526563] msm_dpu ae01000.display-controller: [drm:drm_client_dev_hotplug] fbdev: ret=0
-[ 1085.708561] msm_dpu ae01000.display-controller: [drm:drm_sysfs_connector_hotplug_event] [CONNECTOR:34:DP-1] generating connector hotplug event
-[ 1085.708653] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] 
-[ 1085.708668] [drm:drm_mode_object_get] OBJ ID: 34 (2)
-[ 1085.708684] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1]
-[ 1085.708699] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1] status updated from connected to disconnected
-[ 1085.708715] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1] disconnected
-[ 1085.708730] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] No connectors reported connected with modes
-[ 1085.708741] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] [CONNECTOR:34:DP-1] enabled? no
-[ 1085.708760] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] Not using firmware configuration
-[ 1085.708773] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] picking CRTCs for 16383x16383 config
-[ 1085.708787] [drm:drm_mode_object_put] OBJ ID: 34 (2)
-[ 1085.708797] msm_dpu ae01000.display-controller: [drm:__drm_fb_helper_initial_config_and_unlock] test CRTC 0 primary plane
-[ 1085.708813] msm_dpu ae01000.display-controller: [drm] Cannot find any crtc or sizes
-[ 1085.708818] msm_dpu ae01000.display-controller: [drm:drm_client_dev_hotplug] fbdev: ret=0
-[ 1085.708857] msm_dpu ae01000.display-controller: [drm:drm_sysfs_hotplug_event] generating hotplug event
-[ 1085.708878] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] 
-[ 1085.708888] [drm:drm_mode_object_get] OBJ ID: 34 (2)
-[ 1085.708897] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1]
-[ 1085.708907] msm_dpu ae01000.display-controller: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:34:DP-1] disconnected
-[ 1085.708916] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] No connectors reported connected with modes
-[ 1085.708927] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] [CONNECTOR:34:DP-1] enabled? no
-[ 1085.708939] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] Not using firmware configuration
-[ 1085.708958] msm_dpu ae01000.display-controller: [drm:drm_client_modeset_probe] picking CRTCs for 16383x16383 config
-[ 1085.708970] [drm:drm_mode_object_put] OBJ ID: 34 (2)
-[ 1085.708978] msm_dpu ae01000.display-controller: [drm:__drm_fb_helper_initial_config_and_unlock] test CRTC 0 primary plane
-[ 1085.708989] msm_dpu ae01000.display-controller: [drm] Cannot find any crtc or sizes
-[ 1085.708993] msm_dpu ae01000.display-controller: [drm:drm_client_dev_hotplug] fbdev: ret=0
-[ 1085.709110] [drm:mdss_runtime_resume] 
-[ 1087.574637] usb 3-1: new high-speed USB device number 6 using xhci-hcd
-[ 1093.903875] msm_dpu ae01000.display-controller: [drm:drm_dp_dpcd_access] dpu_dp_aux: Too many retries, giving up. First error: -110
-[ 1093.905052] [drm:mdss_runtime_suspend] 
-```
+The Robo & kala has 2 usb-c connectors, and 1 usb connector via pogo pins (keyboard & touchpad).
+See [acpi layout](./usb/acpi-layout) for the ACPI structure all usb devices. The layout difers from the X13s:
+ - X13s has 2 ports on usb0 and usb1 connected under a RHUB, the Robo & Kala only one.
+ - The Robo & kala has a usb4 router defined in the ACPI (UBF0) with 2 ports, which is missing om the X13s.
+ - The PHYC method on usb0 and usb1 contains data, which is missing on the X13s.
 
+I don't know if these differences affect the working of the DP Altmode. When connecting an external display through usb-c the following is logged:
+```
+[ 1363.960484] msm_dpu ae01000.display-controller: [drm:msm_dp_bridge_hpd_notify] type=10 link hpd_link_status=0x0, link_ready=0, status=2
+[ 1363.960511] msm_dpu ae01000.display-controller: [drm:msm_dp_hpd_unplug_handle] Before, type=10 sink_count=0, link_ready=0
+[ 1363.960625] msm_dpu ae01000.display-controller: [drm:msm_dp_bridge_hpd_notify] type=10 link hpd_link_status=0x0, link_ready=0, status=2
+[ 1363.960636] msm_dpu ae01000.display-controller: [drm:msm_dp_hpd_unplug_handle] Before, type=10 sink_count=0, link_ready=0
+[ 1363.960649] msm_dpu ae01000.display-controller: [drm:msm_dp_bridge_hpd_notify] type=10 link hpd_link_status=0x0, link_ready=0, status=2
+[ 1363.960657] msm_dpu ae01000.display-controller: [drm:msm_dp_hpd_unplug_handle] Before, type=10 sink_count=0, link_ready=0
+[ 1363.960676] msm_dpu ae01000.display-controller: [drm] Cannot find any crtc or sizes
+[ 1365.102416] msm_dpu ae01000.display-controller: [drm:msm_dp_bridge_hpd_notify] type=10 link hpd_link_status=0x0, link_ready=0, status=1
+[ 1365.102445] msm_dpu ae01000.display-controller: [drm:msm_dp_hpd_plug_handle] Before, type=10 sink_count=0, link_ready=0
+[ 1365.102684] msm_dpu ae01000.display-controller: [drm:msm_dp_pm_runtime_resume] type=10 core_init=0 phy_init=1
+[ 1365.102704] [drm:msm_dp_ctrl_core_clk_enable] enable core clocks 
+[ 1365.102718] [drm:msm_dp_ctrl_core_clk_enable] stream_clks:off link_clks:off core_clks:on
+[ 1365.103858] msm_dpu ae01000.display-controller: [drm:msm_dp_hpd_plug_handle] type=10 core_init=1 phy_init=1
+[ 1367.025573] usb 5-1: new high-speed USB device number 11 using xhci-hcd
+[ 1373.321042] msm_dpu ae01000.display-controller: [drm:drm_dp_dpcd_probe] dpu_dp_aux: 0x00102 AUX -> (ret=-110)
+[ 1373.321077] msm_dpu ae01000.display-controller: [drm:msm_dp_pm_runtime_suspend] type=10 core_init=1 phy_init=1
+```
 The following log statement
 ```
-dpu_dp_aux: Too many retries, giving up. First error: -110
+dpu_dp_aux: 0x00102 AUX -> (ret=-110)
 ```
-Could be an indication
-
-In [acpi layout](./usb/acpi-layout) is documented how the ACPI structure is of all usb devices.
+is of particular interest. It seem's as if the mux does not want to switch. I have no idea yet on how to fix or debug this
 
 ## Camera
 TODO
