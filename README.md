@@ -91,7 +91,7 @@ dpu_dp_aux: Too many retries, giving up. First error: -110
 ```
 Could be an indication
 
-In [.\usb\acpi-layout] is documented how the ACPI structure is of all usb devices.
+In [acpi layout](./usb/acpi-layout) is documented how the ACPI structure is of all usb devices.
 
 ## Camera
 TODO
