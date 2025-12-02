@@ -1,0 +1,48 @@
+diff --git a/Makefile b/Makefile
+index b86a1bc..de68a7e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -36,7 +36,6 @@ ifneq ($(SLBOUNCE_ALWAYS_SWITCH),)
+ endif
+ 
+ LDFLAGS += \
+-	-Wl,--no-wchar-size-warning \
+ 	-e efi_main \
+ 	-s -Wl,-Bsymbolic -nostdlib -shared \
+ 	-L $(GNUEFI_OUT)/lib/ -L $(GNUEFI_OUT)/gnuefi \
+@@ -128,7 +127,7 @@ $(OUT_DIR)/dtbhack.so: $(DTBHACK_OBJS) $(LIBEFI_A) $(LIBGNUEFI_A)
+ 
+ $(OUT_DIR)/%.efi: $(OUT_DIR)/%.so
+ 	@echo [ CPY ] $$(basename $@)
+-	@$(OBJCOPY) -j .text -j .sdata -j .data -j .dynamic -j .dynsym -j .rel* \
++	@$(OBJCOPY) -j .text -j .sdata -j .data -j .dynamic -j .dynstr -j .dynsym -j .rel* \
+ 	            -j .rela* -j .reloc -j .eh_frame -O binary $< $@
+ 
+ $(OUT_DIR)/%.o: %.c
+diff --git a/src/test_main.c b/src/test_main.c
+index 0ff45b5..bb3aad9 100644
+--- a/src/test_main.c
++++ b/src/test_main.c
+@@ -132,13 +132,7 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
+ 		return EFI_SUCCESS;
+ 	}
+ 
+-	if (argc != 2) {
+-		Print(L"Usage: slbounce.efi tcblaunch.exe\n\n");
+-		return EFI_INVALID_PARAMETER;
+-	}
+-
+ 	Print(L"We are %s\n", argv[0]);
+-	Print(L"Launching using %s\n", argv[1]);
+ 
+ 	volume = GetVolume(ImageHandle);
+ 	if (!volume) {
+@@ -146,7 +140,7 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
+ 		return EFI_INVALID_PARAMETER;
+ 	}
+ 
+-	file = FileOpen(volume, argv[1]);
++	file = FileOpen(volume, L"tcblaunch.exe");
+ 	if (!file) {
+ 		Print(L"Opening file failed.\n");
+ 		return EFI_INVALID_PARAMETER;

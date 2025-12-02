@@ -29,12 +29,29 @@ This repo contains the efforts in supporting Linux on the Robo & Kala.
 | Video Acceleration  | not verified                                              |
 | Wi-Fi               | works                                                     |
 | EL2                 | secure boot?                                              |
+
 ## Secure boot
-TODO
+Unfortunately the Robo & Kala is locked in secure boot. I haven't found a way to disable this.
+Fortunately the Robo & Kala can be booted in secure boot mode. This has become possible recently:
+1. Microsoft has released a signed dbupdate containing the third-party 2023 key.
+2. Vendors (Red Hat, Opensuse, etc.) have released updated versions of their shim (16.1) signed by the third-party 2023 key.
+
+To boot linux on the Robo & Kala two steps must be taken:
+1. Apply the dbupdate
+2. Download shim from a vendor of choice. (Fedora shim is not usable, since the mokmanager is wrongly signed)
+3. Generate a MOK key/crt
+4. Generate a UKI containing the linux kernel, devicetree, and optionally an initrd. Sign this UKI
+5. Install systemd-boot, sign systemd-boot, and copy to EFI partition.
+6. copy the shim, the public key, and the UKI to the EFI partition
+7. reboot, enroll the MOK key.
+8. reboot, boot systemd-boot/linux.
+
 ## Audio
 TODO
+
 ## Internal Display
 TODO
+
 ## Altmode
 
 The Robo & kala has 2 usb-c connectors, and 1 usb connector via pogo pins (keyboard & touchpad).
@@ -70,8 +87,18 @@ is of particular interest. It seem's as if the mux does not want to switch. I ha
 
 ## Camera
 TODO
+
 ## Wifi & Bluetooth
 TODO
+
 ## EL2
-TODO
+Is possible. To verify, a patched sltest.efi is needed:
+ - Hardcode tcblaunch.exe in test_main.c. See [patch](./el2/hardcode-tcblaunch-exe.patch) for the changes
+ - Sign sltest.efi with same key as in [secure boot](#secure-boot)
+ - Add an entry for sltest.efi in systemd-boot
+ - See the green line appear
+
+Systemd boot currently [verifies](https://github.com/systemd/systemd/blob/v259-rc2/src/boot/drivers.c#L36), if image is of type EfiBootServicesCode or EfiRuntimeServicesCode.
+That is not the case, sinds under secure boot, drivers are signed. I haven't verified if removing this condition makes it load. Solution is maybe to use grub.
+
 ## Other Issues
