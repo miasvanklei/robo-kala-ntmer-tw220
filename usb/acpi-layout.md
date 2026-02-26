@@ -37,15 +37,15 @@
         |-- UCN0
         |-- UCN1
      |-- UCS0 (0x808A0040) -> gpio usb mux
-         |-- GpioIo (a6)
-         |-- GpioIo (a5)
-         |-- GpioIo (a4)
-         |-- GpioIo (a7)
-         |-- GpioIo (31)
-         |-- GpioIo (30)
-         |-- GpioIo (2f)
-         |-- GpioIo (32)
-         |-- GpioIo (1b)
+         |-- GpioIo (a6 = 166)
+         |-- GpioIo (a5 = 165)
+         |-- GpioIo (a4 = 164)
+         |-- GpioIo (a7 = 167)
+         |-- GpioIo (31 = 49)
+         |-- GpioIo (30 = 48)
+         |-- GpioIo (2f = 47)
+         |-- GpioIo (32 = 50)
+         |-- GpioIo (1b = 27)
      |-- PEP0
        |-- URS0
            |-- USB0
